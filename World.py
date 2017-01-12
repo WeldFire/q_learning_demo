@@ -1,22 +1,48 @@
 __author__ = 'philippe'
 from Tkinter import *
+from MapManager import MapManager
+import time
+import sys
 master = Tk()
 
+
+#Determine when we have found the optimal path
+lastScore = -sys.maxint - 1
+bestScoreStreak = 0
+bestScoreStreakTarget = 10
+iterations = 0
+startMapTraverse = None
+
+#Board setup
 triangle_size = 0.1
 cell_score_min = -0.2
 cell_score_max = 0.2
-Width = 100
+Width = 10
+#SET YOUR MAP SIZE HERE!
 (x, y) = (5, 5)
+#SET YOUR MAP SIZE HERE!
 actions = ["up", "down", "left", "right"]
 
 board = Canvas(master, width=x*Width, height=y*Width)
-player = (0, y-1)
 score = 1
 restart = False
 walk_reward = -0.04
 
-walls = [(1, 1), (1, 2), (2, 1), (2, 2)]
-specials = [(4, 1, "red", -1), (4, 0, "green", 1)]
+#Start timing map generation
+startMapGen = time.time()
+mm = MapManager()
+
+#SET YOUR MAP TYPE HERE!
+#choices=['core', 'lava', 'random', 'simplex']
+walls, specials, player = mm.createMap(x, y, 'simplex')
+#SET YOUR MAP TYPE HERE!
+
+#Display map generation timing
+endMapGen = time.time()
+print("Total map generation and validation time :", endMapGen - startMapGen, " seconds")
+
+playerInit = (player[0],player[1])
+
 cell_scores = {}
 
 
@@ -75,7 +101,7 @@ def set_cell_score(state, action, val):
 
 
 def try_move(dx, dy):
-    global player, x, y, score, walk_reward, me, restart
+    global player, x, y, score, walk_reward, me, restart, lastScore, bestScoreStreak, bestScoreStreakTarget, startMapTraverse, iterations
     if restart == True:
         restart_game()
     new_x = player[0] + dx
@@ -89,9 +115,26 @@ def try_move(dx, dy):
             score -= walk_reward
             score += w
             if score > 0:
-                print "Success! score: ", score
+				iterations = iterations + 1
+				print("Success! score: ", score)
+				if(score == lastScore):
+					bestScoreStreak = bestScoreStreak + 1
+					if(bestScoreStreak >= bestScoreStreakTarget):
+						endMapTraverse = time.time()
+						print("")
+						print("The agent has found the optimal path in ", iterations, " iterations!")
+						print("The agent took :", endMapTraverse - startMapTraverse, " seconds")
+						print("-------------------------------------------------")
+						print("                                   (\_/)  ")
+						print("Sayonara, thanks for stopping bye! (^-^)/)")
+						print("-------------------------------------------------")
+						raw_input("Please restart the program with different settings for more fun!")
+				else:
+					lastScore = score
+					bestScoreStreak = 0					
             else:
-                print "Fail! score: ", score
+				iterations = iterations + 1
+				print("Fail! score: ", score)
             restart = True
             return
     #print "score: ", score
@@ -115,7 +158,7 @@ def call_right(event):
 
 def restart_game():
     global player, score, me, restart
-    player = (0, y-1)
+    player = playerInit
     score = 1
     restart = False
     board.coords(me, player[0]*Width+Width*2/10, player[1]*Width+Width*2/10, player[0]*Width+Width*8/10, player[1]*Width+Width*8/10)
@@ -134,5 +177,19 @@ me = board.create_rectangle(player[0]*Width+Width*2/10, player[1]*Width+Width*2/
 board.grid(row=0, column=0)
 
 
-def start_game():
-    master.mainloop()
+def start_game(args):
+	#print(args.verbose)
+	#if(args.verbose):
+	#	MapManager.Verbose = True
+	#
+	#if(args.width is not None):
+	#	x = args.width
+	#	
+	#if(args.height is not None):
+	#	y = args.height	
+	#	
+	#print(args.type)
+	
+	global startMapTraverse
+	startMapTraverse = time.time()
+	master.mainloop()

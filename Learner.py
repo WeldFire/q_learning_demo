@@ -2,6 +2,7 @@ __author__ = 'philippe'
 import World
 import threading
 import time
+import argparse
 
 discount = 0.3
 actions = World.actions
@@ -84,10 +85,17 @@ def run():
         alpha = pow(t, -0.1)
 
         # MODIFY THIS SLEEP IF THE GAME IS GOING TOO FAST.
-        time.sleep(0.1)
+        time.sleep(0.01)
 
+
+parser = argparse.ArgumentParser(description='Q Learning Demo!', prefix_chars='-+')
+#parser.add_argument("-v", "--verbose", help="Turns verbose mode on", action="store_true")
+#parser.add_argument('-width', type=int, help='The map width')
+#parser.add_argument('-height', type=int, help='The map height')
+#parser.add_argument('-type', choices=['core', 'lava', 'random', 'simplex'], help='The map type to generate - \'knoise\', \'lava\', \'random\', \'simplex\' (default: knoise)')
+args=parser.parse_args()
 
 t = threading.Thread(target=run)
 t.daemon = True
 t.start()
-World.start_game()
+World.start_game(args)
