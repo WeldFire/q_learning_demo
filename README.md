@@ -4,6 +4,7 @@
 This code generates a more difficult set of mazes for a Q-Learning bot to practice on. 
 This code is a submission for [this](https://youtu.be/A5eihauRQvo) video on Youtube by Siraj Raval. 
 This is a simple example of a type of [reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning) called [Q learning](https://en.wikipedia.org/wiki/Q-learning). 
+
 	● Rules: The agent (yellow box) has to reach one of the goals to end the game (green or red cell).
 	● Rewards: Each step gives a negative reward of -0.04. The red cell gives a negative reward of -1. The green one gives a positive reward of +1.
 	● States: Each cell is a state the agent can be.
