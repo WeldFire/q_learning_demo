@@ -20,9 +20,13 @@ Run `python Learner.py` in terminal to see the the bot in action.
 To have some more fun, edit the Map generation type or size in World.py!
 
 ##Map Types
+###Layered Simplex Map Type
 ![](/example-maps/simplex.png?raw=true "Layered Simplex Map Type")
+###'Lava' Map Type
 ![](/example-maps/lava.png?raw=true "'Lava' Map Type")
+###'Core' Map Type
 ![](/example-maps/core.png?raw=true "'Core' Map Type")
+###Random Map Type
 ![](/example-maps/random.png?raw=true "Random Map Type")
 
 ##Features
