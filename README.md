@@ -51,6 +51,7 @@ To have some more fun, edit the Map generation type or size in World.py!
 * Map Size, Type, and Verbosity set as startup arguments
 * Hotkeys for building a new map/new map type
 * Further bot enhancements
+* Lots of code cleaning and commenting :/
 
 ##Credits
  - Initial code base [PhillipeMorere](https://github.com/PhilippeMorere).
