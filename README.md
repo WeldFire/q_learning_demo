@@ -1,6 +1,6 @@
 # Maze Generation for a Q-Learning Bot!
 
-##Overview
+## Overview
 This code generates a more difficult set of mazes for a Q-Learning bot to practice on. 
 This code is a submission for [this](https://youtu.be/A5eihauRQvo) video on Youtube by Siraj Raval. 
 This is a simple example of a type of [reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning) called [Q learning](https://en.wikipedia.org/wiki/Q-learning). 
@@ -10,27 +10,27 @@ This is a simple example of a type of [reinforcement learning](https://en.wikipe
 	● States: Each cell is a state the agent can be.
 	● Actions: There are only 4 actions. Up, Down, Right, Left.
 
-##Dependencies
+## Dependencies
  - Python (tested on 2.7, but I think 3 should work)
  - tkinter (sudo apt-get install python-tk)
  - noise (pip install noise)
 
-##Usage
+## Usage
 Run `python Learner.py` in terminal to see the the bot in action.
 
 To have some more fun, edit the Map generation type or size in World.py!
 
-##Map Types
-###Layered Simplex Map Type
+## Map Types
+### Layered Simplex Map Type
 ![](/example-maps/simplex.png?raw=true "Layered Simplex Map Type")
-###'Lava' Map Type
+### 'Lava' Map Type
 ![](/example-maps/lava.png?raw=true "'Lava' Map Type")
-###'Core' Map Type
+### 'Core' Map Type
 ![](/example-maps/core.png?raw=true "'Core' Map Type")
-###Random Map Type
+### Random Map Type
 ![](/example-maps/random.png?raw=true "Random Map Type")
 
-##Features
+## Features
 * Map was expanded and is dynamic to any size (can be changed in World.py)
 * More obstacles can be generated based on the map type selected
 * 4 Map type generators were added 
@@ -46,14 +46,14 @@ To have some more fun, edit the Map generation type or size in World.py!
 * Total iterations until optimal route is calculated and displayed
 * Timings until optimal route are calculated and displayed
 
-##Possible Improvements
+## Possible Improvements
 * More map generation types (Different kinds of noise?)
 * Map Size, Type, and Verbosity set as startup arguments
 * Hotkeys for building a new map/new map type
 * Further bot enhancements
 * Lots of code cleaning and commenting :/
 
-##Credits
+## Credits
  - Initial code base [PhillipeMorere](https://github.com/PhilippeMorere).
  - Idea and starting code [Siraj](https://github.com/llSourcell).
 
